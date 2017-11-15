@@ -1,0 +1,277 @@
+{% extends 'Header.html' %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+ {% load bootstrap_pagination %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>var test = $.noConflict(true);</script>
+<link href="{%static 'css/jquery-ui.css' %}" rel="stylesheet" type="text/css" media="all"/>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 5000000,
+            values: [ 0, 300000 ],
+            slide: function( event, ui ) {
+                $( "#amount_1" ).val( "تا  " + ui.values[ 1 ].toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان" );
+                $( "#amount" ).val( "از  " + ui.values[ 0 ].toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان");
+            }
+        });
+        $( "#amount_1" ).val( "تا  " + $( "#slider-range" ).slider( "values", 1 ).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان" );
+        $( "#amount" ).val( "از  " + $( "#slider-range" ).slider( "values", 0 ).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان");
+    } );
+
+</script>
+<script>
+    $( function() {
+        $( "#slider-range2" ).slider({
+            range: true,
+            min: 0,
+            max: 5000000,
+            values: [ 0, 300000 ],
+            slide: function( event, ui ) {
+                $( "#amount2_1" ).val( "تا  " + ui.values[ 1 ].toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان" );
+                $( "#amount2" ).val( "از  " + ui.values[ 0 ].toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان");
+            }
+        });
+        $( "#amount2_1" ).val( "تا  " + $( "#slider-range2" ).slider( "values", 1 ).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان" );
+        $( "#amount2" ).val( "از  " + $( "#slider-range2" ).slider( "values", 0 ).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "  تومان");
+    } );
+
+</script>
+<script>
+    $( function() {
+        $( "#slider-range3" ).slider({
+            range: true,
+            min: 0,
+            max: 100,
+            values: [ 0, 100 ],
+            slide: function( event, ui ) {
+                $( "#amount3_1" ).val( "تا  " + ui.values[ 1 ]+ "  درصد" );
+                $( "#amount3" ).val( "از  " + ui.values[ 0 ] + "  درصد");
+            }
+        });
+        $( "#amount3_1" ).val( "تا  " + $( "#slider-range3" ).slider( "values", 1 ) + "  درصد" );
+        $( "#amount3" ).val( "از  " + $( "#slider-range3" ).slider( "values", 0 ) + "  درصد");
+    } );
+
+</script>
+
+<script>
+    $(function() {
+$('#chkfilter').on('keyup', function() {
+    var query = this.value;
+
+    $('[name^="websites"]').each(function(i, elem) {
+          if (elem.value.indexOf(query) != -1) {
+              $(this).closest('label').show();
+          }else{
+              $(this).closest('label').hide();
+          }
+    });
+});
+
+});
+</script>
+<script>
+    $(function() {
+$('#chkfilter2').on('keyup', function() {
+    var query = this.value.toUpperCase();
+
+    $('[name^="brands"]').each(function(i, elem) {
+          if (elem.value.toUpperCase().indexOf(query) != -1) {
+              $(this).closest('label').show();
+          }else{
+              $(this).closest('label').hide();
+          }
+    });
+});
+
+});
+</script>
+
+<div class="login">
+    <div class="wrap">
+        <div class="sidenav" id="mySidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="margin-right:30px">&times;</a>
+            <form action="/filtering/" method="post">
+                {% csrf_token %}
+            <section>
+                <h4>وبسایت</h4>
+                <div>
+                    <input type="text" id="chkfilter" style="width:100%" placeholder="جستجو کنید ....">
+                <div style="max-height:300px;overflow: auto;outline:none;">
+                    {% for site in websites %}
+                    <div class="col col-4" style="margin:10px;">
+                        <label class="checkbox">
+                            <input type="checkbox" name="websites" value={{site}} checked="">{{site}}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                    </div>
+                <h4>محدوده قیمت: </h4>
+                <br>
+                <div class="row">
+                    <p>
+                        <input type="text" id="amount" name="amount" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <input type="text" id="amount_1" name="amount_1" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <br><br>
+                    <div id="slider-range" style="width:90%;margin-right:10px;"></div>
+                    </p>
+                </div>
+                <br>
+                <h4>محدوده قیمت تخفیف: </h4>
+                <br>
+                <div class="row">
+                    <p>
+                        <input type="text" id="amount2" name="amount2" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <input type="text" id="amount2_1" name="amount2_1" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <br><br>
+                    <div  id="slider-range2" style="width:90%;margin-right:10px;"></div>
+                    </p>
+                </div>
+                <br>
+                <h4>محدوده  درصد تخفیف: </h4>
+                <br>
+                <div class="row">
+                    <p>
+                        <input type="text" id="amount3" name="amount3" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <input type="text" id="amount3_1" name="amount3_1" readonly
+                               style="margin-right:3%;font-family:shabnam;width:90%;text-align:center; border:10;border-width:3px;border-style:outset;color:#f6931f; font-weight:bold;font-size:20px;">
+                        <br><br>
+                    <div id="slider-range3" style="width:90%;margin-right:10px;"></div>
+                    </p>
+                </div>
+                <br>
+                <h4>برند</h4>
+                <div>
+                    <input type="text" id="chkfilter2" style="width:100%" placeholder="جستجو کنید ....">
+                    <div style="max-height:300px;overflow: auto;outline:none;">
+                    {% for brand in brands %}
+                    <div class="col col-4" style="margin:10px">
+                        <label class="checkbox"><input type="checkbox" name="brands" value="{{brand}}"
+                                                       checked=""><i></i>{{brand}}</label>
+                    </div>
+                    {% endfor %}
+                        </div>
+                </div>
+                <br>
+            </section>
+            <button class="btn btn-success btn-lg" type="submit" style="width:100%">اعمال تغییرات</button>
+            </form>
+        </div>
+        <!--<span class="glyphicon glyphicon-filter" style="font-size:30px;cursor:pointer" onclick="openNav()">فیلتر</span>-->
+        <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "350px";
+    document.getElementById("main").style.marginRight = "25%";
+    document.getElementById("main").style.width = "75%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight = "0%";
+    document.getElementById("main").style.width = "100%";
+}
+</script>
+        <br>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11" id="main">
+                {% for p in Products %}
+                <div class="col-sm-3" style="border:2px solid;">
+                    <a href={{p.address}}>
+                        <div class="top_box">
+                            <h3 class="m_1">
+                                <div style="height:30px;">{{p.item_name}}</div>
+                            </h3>
+                            <p class="m_2"></p>
+                            <div class="grid_img">
+                                <div class="css3"><img src={{p.item_image}} alt="" style="height:258px;width:208px;"/></div>
+                                <!--<div class="mask">-->
+                                <!--<div class="info">Quick View</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    <ul style="width:100%; height:40px;background-color:gray;margin-bottom: 0px">
+                                <li style="color:black;font-size:small;text-align:center;padding-top:10px;"><strike>
+                                    <span>قیمت: </span>
+                                    <span>{{p.old_price | intcomma}}  </span>
+                                    <span>  تومان</span>
+                                    </strike>
+                                </li>
+                    </ul>
+                    <ul style="width:100%; height:40px;background-color:yellow;margin-bottom: 0px">
+                                <li style="color:black;font-size:small;text-align:center;padding-top:10px;">
+                                    <span>قیمت: </span>
+                                    <span>{{p.new_price | intcomma}}  </span>
+                                    <span>  تومان</span>
+                                </li>
+                    </ul>
+                    <ul style="width:100%; height:40px;background-color:green;margin-bottom: 0px">
+                            <!--<img src="{% static 'images/plus.png' %}" alt=""/>-->
+                                <li style="color:white;font-size:small;text-align:center;padding-top:10px;">
+                                    <span>تخفیف:   </span>
+                                    <span>{{p.discount_price | intcomma}} </span>
+                                    <span>تومان   </span>
+                                </li>
+                    </ul>
+                    <ul style="width:100%; height:40px;background-color:blue;margin-bottom: 3px">
+                                <li style="color:white;font-size:small;text-align:center;padding-top:10px;">
+                                    <span>درصد تخفیف:   </span>
+                                    <span>{{p.discount_percent}}</span>
+                                    <span>٪</span>
+                                </li>
+                    </ul>
+                    <div class="clear"></div>
+                </a>
+                </div>
+                {% endfor %}
+                <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <br><br>
+        <div style="float:left">
+            {% bootstrap_paginate page_obj range=10 show_prev_next="false" show_first_last="true" %}
+        </div>
+        <div class="mens-toolbar">
+                <div class="sort">
+                    <div class="sort-by">
+                        <!--<label>Sort By</label>-->
+                        <!--<select>-->
+                            <!--<option value="">-->
+                                <!--Popularity-->
+                            <!--</option>-->
+                            <!--<option value="">-->
+                                <!--Price : High to Low-->
+                            <!--</option>-->
+                            <!--<option value="">-->
+                                <!--Price : Low to High-->
+                            <!--</option>-->
+                        <!--</select>-->
+                        <!--<a href=""><img src="{% static 'images/arrow2.gif' %}" alt="" class="v-middle"></a>-->
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        <div class="pagination-row text-right">
+
+</div>
+    </div>
+</div>
+
+
+<div class="footer navbar-fixed-bottom">
+<a href="#" class="btn btn-info btn-lg" onclick="openNav()" style="width:100%;height:50px;">
+          <span class="glyphicon glyphicon-filter"></span> Filter
+        </a>
+    </div>
+{% endblock %}

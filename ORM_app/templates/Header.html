@@ -1,0 +1,319 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{%static 'favicon.ico' %}"/>
+    <title>Free Adidas Website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="{%static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{%static 'css/bootstrap.rtl.full.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{%static 'css/bootstrap.rtl.css' %}" rel="stylesheet" type="text/css" media="all"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
+    <link href="{%static 'css/Shabnam.css' %}" rel="stylesheet">
+    <link href="{%static 'css/etalage.css' %}" rel="stylesheet">
+    <link href="{%static 'css/form.css' %}" rel="stylesheet">
+    <link href="{%static 'css/simplePagination.css' %}" rel="stylesheet">
+    <!--<link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">-->
+    <script
+  src="https://code.jquery.com/jquery-1.8.3.js"
+  integrity="sha256-dW19+sSjW7V1Q/Z3KD1saC6NcE5TUIhLJzJbrdKzxKc="
+  crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{%static 'js/jquery.simplePagination.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/jquery.jscrollpane.min.js' %}"></script>
+    <script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+
+    </script>
+
+    <script type="text/javascript" src="{%static 'js/jquery.flexisel.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/jquery.etalage.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+
+
+
+
+
+    </script>
+    <!-- start menu -->
+    <link href="{%static 'css/megamenu.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="{%static 'js/megamenu.js' %}"></script>
+    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <!-- end menu -->
+    <!-- top scrolling -->
+    <script type="text/javascript" src="{%static 'js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{%static 'js/easing.js' %}"></script>
+    <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+
+
+
+
+
+    </script>
+</head>
+<body>
+<div class="header-top">
+    <div class="wrap">
+        <div class="logo">
+            <a href="index.html"><img src="{%static 'images/logo.png' %}" alt=""/></a>
+        </div>
+        <div class="cssmenu col-lg-3">
+            <ul>
+                <li class="active"><a href="register.html">مسیر</a></li>
+                <li><a href="">فروشگاه ها</a></li>
+                <li><a href="login.html">تماس با ما</a></li>
+            </ul>
+        </div>
+        <form action="/Search/" method="get">
+            {% csrf_token %}
+            <div class="col-lg-6">
+                <div class="input-group custom-search-form">
+                  <input type="text" class="form-control" id="search" name="search">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">جستجو</button>
+                  </span>
+                 </div><!-- /input-group -->
+            </div>
+        </form>
+
+
+        <!--نمایش دهنده سبد خرید-->
+        <!--<ul class="icon2 sub-icon2 profile_img">-->
+        <!--<li><a class="active-icon c2" href="#"> </a>-->
+        <!--<ul class="sub-icon2 list">-->
+        <!--<li><h3>Products</h3><a href=""></a></li>-->
+        <!--<li><p>Lorem ipsum dolor sit amet, consectetuer <a href="">adipiscing elit, sed diam</a></p></li>-->
+        <!--</ul>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="header-bottom">
+    <div class="wrap">
+        <!-- start header menu -->
+        <ul class="megamenu skyblue">
+            <li><a class="color1" href="/">صفحه اصلی</a></li>
+            <li class="grid"><a class="color2" href="#">دیجیتال</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Mobile/">موبایل</a></li>
+                                    <li><a href="/Tablet/">تبلت</a></li>
+                                    <li><a href="/Laptop/">لپتاپ</a></li>
+                                    <li><a href="/Computer_Parts/">کامپیوتر و لوازم جانبی</a></li>
+                                    <li><a href="/Camera/">دوربین</a></li>
+                                    <li><a href="/Camera_Accessories/">اکسسوری دوربین</a></li>
+                                    <li><a href="/Office_Machines/">لوازم اداری</a></li>
+                                    <li><a href="/Digital_Accessories/">لوازم جانبی</a></li>
+                                    <li><a href="/Console_Game/">کنسول بازی</a></li>
+                                    <li><a href="/SimCard/">سیمکارت</a></li>
+                                    <li><a href="/Other_Digital/">سایر لوازم دیجیتال</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="{%static 'images/nav_img.jpg' %}" alt="" style="float:left"/>
+                    </div>
+                </div>
+            </li>
+            <li class="active grid"><a class="color4" href="#">مد و لباس</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Men_Clothes/">لباس مردانه</a></li>
+                                    <li><a href="/Women_Clothes/">لباس زنانه</a></li>
+                                    <li><a href="/Men_Shoes/">کفش مردانه</a></li>
+                                    <li><a href="/Women_Shoes/">کفش زنانه</a></li>
+                                    <li><a href="/Kids/">بچگانه</a></li>
+                                    <li><a href="/Bag/">کیف</a></li>
+                                    <li><a href="/Men_Accessories/">اکسسوری مردانه</a></li>
+                                    <li><a href="/Women_Accessories/">اکسسوری زنانه</a></li>
+                                    <li><a href="/Men_Women_Accessories/">اکسسوری مردانه و زنانه</a></li>
+                                    <li><a href="/General_Clothes/">لوازم عمومی مد و لباس</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="{%static 'images/nav_img.jpg' %}" alt="" style="float:left"/>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color5" href="#">لوازم خانه</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Video_Audio/">صوتی و تصویری</a></li>
+                                    <li><a href="/Home_Kitchen_Appliance/">آشپزخانه</a></li>
+                                    <li><a href="/Home_Electrical_Appliance/">لوازم برقی</a></li>
+                                    <li><a href="/Decorative/">دکوراتیو</a></li>
+                                    <li><a href="/Hair_Care/">مراقبت از مو</a></li>
+                                    <li><a href="/Bed_Bath/">اتاق خواب و حمام</a></li>
+                                    <li><a href="/Clean/">لوازم نظافت</a></li>
+                                    <li><a href="/Carpet/">فرش</a></li>
+                                    <li><a href="/General_Home/">لوازم عمومی منزل</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="{% static 'images/nav_img2.jpg' %}" alt="" style="float:left"/>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color6" href="#">زیبایی و سلامت</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Perfume/">عطر</a></li>
+                                    <li><a href="/Makeup/">لوازم آرایشی</a></li>
+                                    <li><a href="/Health/">لوازم بهداشتی</a></li>
+                                    <li><a href="/Electrical_Personal/">لوازم شخصی برقی</a></li>
+                                    <li><a href="/Skin_Nail/">ناخن-پوست-دست-پا</a></li>
+                                    <li><a href="/Glass/">عینک</a></li>
+                                    <li><a href="/Jewellery/">جواهرات</a></li>
+                                    <li><a href="/Watch/">ساعت</a></li>
+                                    <li><a href="/General_Health_Beauty/">لوازم عمومی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color6" href="#">فرهنگ و هنر</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Publication/">کتاب</a></li>
+                                    <li><a href="/Stationery/">لوازم التحریر</a></li>
+                                    <li><a href="/Music_Tools/">ابزار موسیقی</a></li>
+                                    <li><a href="/Film_Music/">فیلم</a></li>
+                                    <li><a href="/Software_Game/">نرم افزار و بازی</a></li>
+                                    <li><a href="/Handcraft/">صنایع دستی</a></li>
+                                    <li><a href="/Training/">محتوی آموزشی</a></li>
+                                    <li><a href="/General_Culture/">وسایل عمومی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color7" href="#">ورزش</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Men_Sport_Clothes/">لباس ورزشی مردانه</a></li>
+                                    <li><a href="/Women_Sport_Clothes/">لباس ورزشی زنانه</a></li>
+                                    <li><a href="/Sport_Shoes/">کفش ورزشی</a></li>
+                                    <li><a href="/Sport_tools/">لوازم ورزشی</a></li>
+                                    <li><a href="/Bicycle/">دوچرخه</a></li>
+                                    <li><a href="/Travel_Camp/">لوازم سفر</a></li>
+                                    <li><a href="/Toy/">اسباب بازی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color8" href="#">ابزار و خودرو</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Car/">خودرو</a></li>
+                                    <li><a href="/Car_Equipment/">لوازم خودرو</a></li>
+                                    <li><a href="/Motorbike/">موتورسیکلت</a></li>
+                                    <li><a href="/Electrical_Tool/">ابزارآلات برقی</a></li>
+                                    <li><a href="/Hand-Tool/">ابزارآلات دستی</a></li>
+                                    <li><a href="/Other_Car_Tool/">سایر لوازم خودرو</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a class="color9" href="#">سایر</a>
+                <div class="megapanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    <li><a href="/Supermarket/">سوپرمارکت</a></li>
+                                    <li><a href="/Gift/">هدیه</a></li>
+                                    <li><a href="/Other/">سایر</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!--<li><a class="color10" href="#"></a></li>-->
+            <!--<li><a class="color11" href="#"></a></li>-->
+            <!--<li><a class="color12" href="#"></a></li>-->
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
+</html>
