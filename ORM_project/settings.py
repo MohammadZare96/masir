@@ -28,6 +28,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['192.168.163.128','127.0.0.1', '192.168.157.131']
 # Application definition
 
+
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': '127.0.0.1:9200'
+    },
+}
+ELASTICSEARCH_DSL_INDEX_SETTINGS = {
+    'number_of_shards': 1
+}
+
 INSTALLED_APPS = [
     'ORM_app',
     'django.contrib.admin',
@@ -38,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bootstrap_pagination',
+    'django_elasticsearch_dsl'
 ]
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",

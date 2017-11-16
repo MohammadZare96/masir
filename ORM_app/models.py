@@ -11,9 +11,9 @@ from django.db import models
 
 class Masir(models.Model):
     item_name = models.TextField(default='')
-    new_price = models.DecimalField(max_digits=1000, decimal_places=0, blank=True, null=True, default=0)
-    old_price = models.DecimalField(max_digits=1000, decimal_places=0, blank=True, null=True, default=0)
-    discount_price = models.DecimalField(max_digits=1000, decimal_places=0, blank=True, null=True, default=0)
+    new_price = models.BigIntegerField( blank=True, null=True, default=0)
+    old_price = models.BigIntegerField( blank=True, null=True, default=0)
+    discount_price = models.BigIntegerField(blank=True, null=True, default=0)
     discount_percent = models.FloatField()
     address = models.URLField(max_length=1000)
     item_image = models.URLField(max_length=1000, default='')

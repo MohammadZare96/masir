@@ -9,7 +9,7 @@ from ORM_app.category import digikala_categorize
 from scrapy import Request
 from scrapy_splash import SplashRequest
 import datetime
-
+# Masir.objects.all().delete()
 
 
 
@@ -163,7 +163,7 @@ class DigikalaSpider(scrapy.Spider):
                 time = p.time
             )
             masir.save()
-        p.save()
+            p.save()
 
 
 

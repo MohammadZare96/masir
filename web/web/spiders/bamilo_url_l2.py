@@ -4,20 +4,16 @@ import scrapy
 from ORM_app.models import BamiloUrlsL1, BamiloUrlsL2
 from scrapy import Request
 
-
+# BamiloUrlsL2.objects.all().delete()
 class BamiloUrlL2Spider(scrapy.Spider):
     name = 'bamilo_url_l2'
     allowed_domains = ['bamilo.com']
-    # start_urls = ['http://bamilo.com/']
     l1_urls = BamiloUrlsL1.objects.filter()
     def start_requests(self):
-        # start_urls = ['https://www.digikala.com/Product/DKP-284023/']
         urls = BamiloUrlsL1.objects.filter()
         start_urls = []
         for url in urls:
             start_urls.append(url.url)
-        # for url in start_urls:
-        #     print url
         for i in range(0,len(start_urls)):
             yield Request(url=start_urls[i], callback=self.parse)
 

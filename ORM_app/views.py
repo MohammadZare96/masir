@@ -72,24 +72,16 @@ def general(request):
         tag = url.split("/")[4].split("search=")[-1]
     item_per_page = 32
     product_list = search(tag)
-
-
-
-
-
-
     product_list_length = len(product_list)
     pages = product_list_length / item_per_page
     try:
         page_number = int(page_number)
     except:
         page_number = 1
-    print page_number, product_list_length
-    # return render(request, 'shop.html',
-    #               {"Products": product_list[:10]})
+
     brands=[]
     for p in product_list:
-        if p.brand:
+        if p.brand not in brands:
             brands.append(p.brand)
 
     paginator = Paginator(product_list, 32)
@@ -100,8 +92,6 @@ def general(request):
         page_obj  = paginator.page(1)
     except EmptyPage:
         page_obj  = paginator.page(paginator.num_pages)
-
-    print (product_list_length)%item_per_page
     if page_number * item_per_page < ((product_list_length)/item_per_page+1)* item_per_page +1:
         return render(request, 'shop.html', {
             "Products":product_list[item_per_page*(page_number-1):item_per_page*page_number],

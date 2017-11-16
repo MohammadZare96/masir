@@ -18,6 +18,7 @@ from scrapy_splash import SplashRequest
 from ORM_app.category import bamilo_categorize
 
 # Product_Bamilo.objects.all().delete()
+# Masir.objects.all().delete()
 
 class BamiloSpider(scrapy.Spider):
     name = 'bamilo'
